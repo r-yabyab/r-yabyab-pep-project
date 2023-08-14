@@ -54,8 +54,6 @@ public class MessageDAO {
                 );
                 messages.add(message);
             }
-            rs.close();
-            preparedStatement.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             // System.out.println("error messageDAO");
@@ -134,13 +132,7 @@ public class MessageDAO {
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+        } 
         return null;
     }
 
