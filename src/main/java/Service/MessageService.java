@@ -46,10 +46,8 @@ public class MessageService {
 
     // UPDATE message
     public Message updateMessage(Message message, int id) {
-        Message existingMessage = messageDAO.getMessageById(id);
-        if (existingMessage != null 
-                && message.getMessage_text().length() > 0 
-                && message.getMessage_text().length() <= 254) {
+        // Message existingMessage = messageDAO.getMessageById(id);
+        if (  message.getMessage_text().length() > 0 && message.getMessage_text().length() < 255) {
             return messageDAO.updateMessage(message, id);
         } else {
             return null;
