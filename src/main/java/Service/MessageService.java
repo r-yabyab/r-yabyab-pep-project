@@ -16,8 +16,9 @@ public class MessageService {
         accountDAO = new AccountDAO();
     }
 
-    public MessageService(MessageDAO messageDAO) {
+    public MessageService(MessageDAO messageDAO, AccountDAO accountDAO) {
         this.messageDAO = messageDAO;
+        this.accountDAO = accountDAO;
     }
 
     // get all messages
@@ -34,8 +35,8 @@ public class MessageService {
     public Message postMessage(Message message) {
         if (message.getMessage_text().length() == 0
             || message.getMessage_text().length() > 254
-            // || message.getPosted_by() != accountDAO.getAccountId(message.getPosted_by())
-            || accountDAO.getAccountId(message.getPosted_by()) == null
+            // || message.getPosted_by() != accountDAO.getAccountById(message.getPosted_by())
+            // || accountDAO.getAccountById(message.getPosted_by()) == null
             ) {
                 return null;
             } else {

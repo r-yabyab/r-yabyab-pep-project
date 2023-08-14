@@ -70,13 +70,20 @@ public class AccountDAO {
         return null;
     }
 
-    public Account getAccountId(int account_id) {
+    public Account getAccountById(int account_id) {
         Connection connection = ConnectionUtil.getConnection();
         try {
             String sql = "SELECT account_id FROM Account WHERE account_id = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, account_id);
-            preparedStatement.executeQuery();
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                return new Account(
+                    account_id,
+                    rs.getString("username"),
+                    rs.getString("password")
+                );
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
